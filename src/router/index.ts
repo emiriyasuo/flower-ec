@@ -3,6 +3,8 @@ import type {RouteRecordRaw} from "vue-router";
 import AppTop from "@/views/AppTop.vue";
 import TopView from "../views/TopView.vue";
 import ItemList from "../views/item/ItemList.vue"
+import ItemDetail from "../views/item/ItemDetail.vue"
+import App from "../App.vue"
 
 const routeSettings: RouteRecordRaw[]=[
   {
@@ -11,15 +13,52 @@ const routeSettings: RouteRecordRaw[]=[
     component:AppTop
   },
   {
+    path:"/app",
+    name:"App",
+    component:App
+  },
+  {
     path:"/",
     name:"TopView",
     component:TopView
   },
   {
-    path:"/itemList",
+    path:"/item/itemList",
     name:"ItemList",
-    component:ItemList
+    component:()=>{
+      return import("@/views/item/ItemList.vue")
+    },
   },
+  {   
+        path:"/item/detail/:id",
+        name:"ItemDetail",
+        component:()=>{
+          return import("@/views/item/ItemDetail.vue")
+        },
+        props:(routes)=>{
+          const idNum = Number(routes.params.id);
+          return{
+            id:idNum
+          };
+        }
+  },
+    // component:ItemList,
+  //   children: [
+  //     {
+  //       path:"/item/detail/:id",
+  //       name:"ItemDetail",
+  //       component:()=>{
+  //         return import("@/views/item/ItemDetail.vue")
+  //       },
+  //       props:(routes)=>{
+  //         const idNum = Number(routes.params.id);
+  //         return{
+  //           id:idNum
+  //         };
+  //       }
+  //     }
+  //   ]
+  // },
   {
     path:"/member/memberList",
     name:"MemberList",
