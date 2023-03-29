@@ -10,7 +10,7 @@ interface Props{
 const props = defineProps<Props>();
 const MemberList = inject("memberList") as Map<number, Member>;
 
-console.log(MemberList)
+
 
 const member = computed(
     ():Member =>{

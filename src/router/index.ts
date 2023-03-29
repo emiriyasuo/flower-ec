@@ -42,6 +42,13 @@ const routeSettings: RouteRecordRaw[]=[
           };
         }
   },
+  {   
+    path:"/cart/add",
+    name:"CartAdd",
+    component:()=>{
+      return import("@/views/cart/CartAdd.vue")
+    },
+},
     // component:ItemList,
   //   children: [
   //     {
